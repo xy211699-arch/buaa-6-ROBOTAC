@@ -1,0 +1,44 @@
+--- /root/gpufree-data/RoboJuDo/backups/right_overhand_20260713_codex/diagnose_mjlab_tracking.py
++++ /root/gpufree-data/RoboJuDo/backups/right_overhand_20260713_codex/diagnose_mjlab_tracking.py
+@@ -4,6 +4,7 @@
+ from pathlib import Path
+ 
+ import numpy as np
++import onnxruntime as ort
+ import torch
+ 
+ from mjlab.envs import ManagerBasedRlEnv
+@@ -23,6 +24,9 @@
+     "motion_home_adaptive_selected_v3_balanced.npz"
+ )
++ONNX = Path(
++    "/root/gpufree-data/unitree_rl_mjlab/result/motions/right_overhand/policy.onnx"
++)
+ 
+ 
+ def main() -> None:
+@@ -43,6 +47,7 @@
+         map_location="cpu",
+     )
+     policy = runner.get_inference_policy(device="cpu")
++    onnx_session = ort.InferenceSession(str(ONNX), providers=["CPUExecutionProvider"])
+ 
+     initial_obs = vec_env.get_observations()["actor"][0].cpu().numpy()
+     print(
+@@ -58,6 +63,9 @@
+             observations = vec_env.get_observations()
+             actions = policy(observations)
++        actor_obs = observations["actor"].cpu().numpy()
++        onnx_actions = onnx_session.run(["actions"], {"obs": actor_obs})[0]
++        action_diff = np.max(np.abs(actions.cpu().numpy() - onnx_actions))
+ 
+         robot = vec_env.unwrapped.scene["robot"]
+         command = vec_env.unwrapped.command_manager.get_term("motion")
+@@ -75,6 +83,7 @@
+                 f"height={root_pos[2]:.6f}",
+                 f"quat_w={root_quat[0]:.6f}",
+                 f"action_norm={np.linalg.norm(action_np):.6f}",
++                f"onnx_diff={action_diff:.8f}",
+                 f"done={int(dones[0])}",
+             )
+ 

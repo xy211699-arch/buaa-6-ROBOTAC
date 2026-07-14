@@ -1,0 +1,20 @@
+--- /root/gpufree-data/RoboJuDo/tests/test_mjlab_tracking_policy.py
++++ /root/gpufree-data/RoboJuDo/tests/test_mjlab_tracking_policy.py
+@@ -6,1 +6,2 @@
+ import numpy as np
++from scipy.spatial.transform import Rotation as sRot
+@@ -109,0 +111,14 @@
++    def test_reference_heading_alignment_uses_root_not_torso(self):
++        original_quats = self.policy.reference_body_quat_wxyz.copy()
++        try:
++            self.policy.reference_body_quat_wxyz[:, 0] = sRot.from_euler("z", 30, degrees=True).as_quat()[[3, 0, 1, 2]]
++            self.policy.reference_body_quat_wxyz[:, 7] = sRot.from_euler("z", 50, degrees=True).as_quat()[[3, 0, 1, 2]]
++            self.env_data.base_quat = sRot.from_euler("z", 100, degrees=True).as_quat().astype(np.float32)
++            self.env_data.torso_quat = sRot.from_euler("z", 125, degrees=True).as_quat().astype(np.float32)
++
++            obs, _ = self.policy.get_observation(self.env_data, Box())
++            expected = sRot.from_euler("z", -5, degrees=True).as_matrix()[:, :2].reshape(-1)
++            np.testing.assert_allclose(obs[58:64], expected, atol=1e-6)
++        finally:
++            self.policy.reference_body_quat_wxyz[:] = original_quats
++

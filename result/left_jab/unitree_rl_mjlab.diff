@@ -1,0 +1,829 @@
+--- git commit ---
+1425b15f73bd4095f0df53709d7c389c3eb9e790
+
+
+--- git status ---
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	typechange: deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so
+	typechange: deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1
+	typechange: deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1
+	modified:   scripts/play.py
+	modified:   scripts/train.py
+	typechange: simulate/mujoco/lib/libmujoco.so
+	modified:   src/tasks/tracking/config/g1/env_cfgs.py
+	modified:   src/tasks/tracking/config/g1/rl_cfg.py
+	modified:   src/tasks/tracking/tracking_env_cfg.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	mjlab/
+	scripts/__pycache__/
+	scripts/export_checkpoints_to_onnx.py
+	scripts/pkl_to_npz.py
+	scripts/play-0507.py
+	scripts/play_bak.py
+	src/__pycache__/
+	src/assets/__pycache__/
+	src/assets/motions/g1/005_motion.npz
+	src/assets/motions/g1/006_motion.npz
+	src/assets/robots/__pycache__/
+	src/assets/robots/unitree_a2/__pycache__/
+	src/assets/robots/unitree_as2/__pycache__/
+	src/assets/robots/unitree_g1/__pycache__/
+	src/assets/robots/unitree_go2/__pycache__/
+	src/assets/robots/unitree_h1_2/__pycache__/
+	src/assets/robots/unitree_h2/__pycache__/
+	src/assets/robots/unitree_r1/__pycache__/
+	src/tasks/__pycache__/
+	src/tasks/tracking/__pycache__/
+	src/tasks/tracking/config/__pycache__/
+	src/tasks/tracking/config/g1/__pycache__/
+	src/tasks/tracking/config/g1/background.png
+	src/tasks/tracking/config/g1/background_contrast.png
+	src/tasks/tracking/config/g1/training_wall_logo_plane.obj
+	src/tasks/tracking/config/g1_23dof/__pycache__/
+	src/tasks/tracking/mdp/__pycache__/
+	src/tasks/tracking/rl/__pycache__/
+	src/tasks/velocity/__pycache__/
+	src/tasks/velocity/config/__pycache__/
+	src/tasks/velocity/config/a2/__pycache__/
+	src/tasks/velocity/config/as2/__pycache__/
+	src/tasks/velocity/config/g1/__pycache__/
+	src/tasks/velocity/config/g1_23dof/__pycache__/
+	src/tasks/velocity/config/go2/__pycache__/
+	src/tasks/velocity/config/h1_2/__pycache__/
+	src/tasks/velocity/config/h2/__pycache__/
+	src/tasks/velocity/config/r1/__pycache__/
+	src/tasks/velocity/mdp/__pycache__/
+	src/tasks/velocity/rl/__pycache__/
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so b/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so
+deleted file mode 120000
+index a64790a..0000000
+--- a/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so
++++ /dev/null
+@@ -1 +0,0 @@
+-libonnxruntime.so.1
+\ No newline at end of file
+diff --git a/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so b/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so
+new file mode 100755
+index 0000000..f7b5a12
+Binary files /dev/null and b/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so differ
+diff --git a/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1 b/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1
+deleted file mode 120000
+index b56b9ba..0000000
+--- a/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1
++++ /dev/null
+@@ -1 +0,0 @@
+-libonnxruntime.so.1.22.0
+\ No newline at end of file
+diff --git a/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1 b/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1
+new file mode 100755
+index 0000000..f7b5a12
+Binary files /dev/null and b/deploy/thirdparty/onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.1 differ
+diff --git a/deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1 b/deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1
+deleted file mode 120000
+index b56b9ba..0000000
+--- a/deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1
++++ /dev/null
+@@ -1 +0,0 @@
+-libonnxruntime.so.1.22.0
+\ No newline at end of file
+diff --git a/deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1 b/deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1
+new file mode 100755
+index 0000000..58b08f5
+Binary files /dev/null and b/deploy/thirdparty/onnxruntime-linux-x64-1.22.0/lib/libonnxruntime.so.1 differ
+diff --git a/scripts/play.py b/scripts/play.py
+index 98f45fc..27b68fd 100644
+--- a/scripts/play.py
++++ b/scripts/play.py
+@@ -6,13 +6,22 @@ from dataclasses import asdict, dataclass
+ from pathlib import Path
+ from typing import Literal
+ 
++import numpy as np
+ import torch
+ import tyro
+ 
++# Ensure project root is importable when running as:
++#   python scripts/play.py ...
++PROJECT_ROOT = Path(__file__).resolve().parents[1]
++if str(PROJECT_ROOT) not in sys.path:
++  sys.path.insert(0, str(PROJECT_ROOT))
++
+ from mjlab.envs import ManagerBasedRlEnv
+ from mjlab.rl import MjlabOnPolicyRunner, RslRlVecEnvWrapper
++from mjlab.sensor import ContactSensor
+ from mjlab.tasks.registry import list_tasks, load_env_cfg, load_rl_cfg, load_runner_cls
+ from mjlab.tasks.tracking.mdp import MotionCommandCfg
++from mjlab.utils.lab_api.math import quat_apply
+ from mjlab.utils.os import get_wandb_checkpoint_path
+ from mjlab.utils.torch import configure_torch_backends
+ from mjlab.utils.wrappers import VideoRecorder
+@@ -35,10 +44,283 @@ class PlayConfig:
+   no_terminations: bool = False
+   """Disable all termination conditions (useful for viewing motions with dummy agents)."""
+ 
++  punch_tip_offset: tuple[float, float, float] = (0.15, 0.02, 0.0)
++  punch_hand: Literal["auto", "left", "right"] = "auto"
++  seed: int | None = None
++  wandb_run_path: str | None = None
++
+   # Internal flag used by demo script.
+   _demo_mode: tyro.conf.Suppress[bool] = False
+ 
+ 
++def _safe_normalize(vec: torch.Tensor, fallback: torch.Tensor) -> torch.Tensor:
++  norm = torch.linalg.norm(vec)
++  if norm < 1e-8:
++    return fallback
++  return vec / norm
++
++def _rotation_matrix_to_quat(rot: torch.Tensor) -> torch.Tensor:
++  """Convert 3x3 rotation matrix to (w, x, y, z) quaternion."""
++  trace = rot[0, 0] + rot[1, 1] + rot[2, 2]
++  if trace > 0.0:
++    s = torch.sqrt(trace + 1.0) * 2.0
++    qw = 0.25 * s
++    qx = (rot[2, 1] - rot[1, 2]) / s
++    qy = (rot[0, 2] - rot[2, 0]) / s
++    qz = (rot[1, 0] - rot[0, 1]) / s
++  elif rot[0, 0] > rot[1, 1] and rot[0, 0] > rot[2, 2]:
++    s = torch.sqrt(1.0 + rot[0, 0] - rot[1, 1] - rot[2, 2]) * 2.0
++    qw = (rot[2, 1] - rot[1, 2]) / s
++    qx = 0.25 * s
++    qy = (rot[0, 1] + rot[1, 0]) / s
++    qz = (rot[0, 2] + rot[2, 0]) / s
++  elif rot[1, 1] > rot[2, 2]:
++    s = torch.sqrt(1.0 + rot[1, 1] - rot[0, 0] - rot[2, 2]) * 2.0
++    qw = (rot[0, 2] - rot[2, 0]) / s
++    qx = (rot[0, 1] + rot[1, 0]) / s
++    qy = 0.25 * s
++    qz = (rot[1, 2] + rot[2, 1]) / s
++  else:
++    s = torch.sqrt(1.0 + rot[2, 2] - rot[0, 0] - rot[1, 1]) * 2.0
++    qw = (rot[1, 0] - rot[0, 1]) / s
++    qx = (rot[0, 2] + rot[2, 0]) / s
++    qy = (rot[1, 2] + rot[2, 1]) / s
++    qz = 0.25 * s
++  quat = torch.tensor([qw, qx, qy, qz], device=rot.device, dtype=rot.dtype)
++  return _safe_normalize(
++    quat,
++    torch.tensor([1.0, 0.0, 0.0, 0.0], device=rot.device, dtype=rot.dtype),
++  )
++
++
++class _PunchTracker:
++  """Single fixed target tracker with auto hand selection and force monitoring."""
++
++  def __init__(
++    self,
++    env: ManagerBasedRlEnv,
++    tip_offset: tuple[float, float, float] = (0.15, 0.02, 0.0),
++    punch_hand: Literal["auto", "left", "right"] = "auto",
++  ):
++    self.env = env
++    self.motion_cmd = env.command_manager.get_term("motion")
++    self.target = env.scene.entities.get("punch_target")
++    self.user_hand = punch_hand
++
++    self.right_tip_offset = torch.tensor(tip_offset, device=env.device)
++    self.left_tip_offset = torch.tensor(
++      (tip_offset[0], -tip_offset[1], tip_offset[2]), device=env.device
++    )
++
++    self.target_half_thickness = 0.00
++    self.target_half_height = 0.16
++    self.target_quat = torch.tensor([1.0, 0.0, 0.0, 0.0], device=env.device)
++    self.target_center = torch.tensor([0.50, 0.00, 0.98], device=env.device)
++
++    self.selected_hand: Literal["left", "right"] = "right"
++    self.max_force = 0.0
++    self.episode_max_force = 0.0
++    self.start_to_target_distance = 0.0
++    self.has_contact = False
++
++    self.sensors: dict[str, list[ContactSensor]] = {"left": [], "right": []}
++    for name, sensor in env.scene.sensors.items():
++      if not isinstance(sensor, ContactSensor) or "fist_target" not in name:
++        continue
++      if "left" in name:
++        self.sensors["left"].append(sensor)
++      elif "right" in name:
++        self.sensors["right"].append(sensor)
++
++    body_names = self.motion_cmd.cfg.body_names
++    self._left_idx = body_names.index("left_wrist_yaw_link")
++    self._right_idx = body_names.index("right_wrist_yaw_link")
++    anchor_name = self.motion_cmd.cfg.anchor_body_name
++    self._anchor_idx = body_names.index(anchor_name) if anchor_name in body_names else 0
++
++  def _motion_steps(self) -> int:
++    total = self.motion_cmd.motion.time_step_total
++    if isinstance(total, torch.Tensor):
++      return int(total.item())
++    return int(total)
++
++  def _tip_traj(self, body_idx: int, tip_offset: torch.Tensor) -> torch.Tensor:
++    steps = self._motion_steps()
++    body_pos = self.motion_cmd.motion.body_pos_w[:steps, body_idx]
++    body_quat = self.motion_cmd.motion.body_quat_w[:steps, body_idx]
++    offsets = tip_offset.unsqueeze(0).expand(steps, -1)
++    return body_pos + quat_apply(body_quat, offsets) + self.env.scene.env_origins[0]
++
++  def _plan_target_pose(self):
++    start_base = (
++      self.motion_cmd.motion.body_pos_w[0, self._anchor_idx] + self.env.scene.env_origins[0]
++    )
++    left_tip_traj = self._tip_traj(self._left_idx, self.left_tip_offset)
++    right_tip_traj = self._tip_traj(self._right_idx, self.right_tip_offset)
++
++    left_reach = torch.linalg.norm(left_tip_traj - start_base, dim=1)
++    right_reach = torch.linalg.norm(right_tip_traj - start_base, dim=1)
++    left_max = float(left_reach.max().item())
++    right_max = float(right_reach.max().item())
++
++    if self.user_hand == "left":
++      chosen_hand = "left"
++    elif self.user_hand == "right":
++      chosen_hand = "right"
++    else:
++      chosen_hand = "left" if left_max > right_max else "right"
++    self.selected_hand = chosen_hand
++
++    tip_traj = left_tip_traj if chosen_hand == "left" else right_tip_traj
++    max_idx = int(torch.argmax(left_reach if chosen_hand == "left" else right_reach).item())
++    max_tip = tip_traj[max_idx]
++    prev_idx = max(0, max_idx - 4)
++    dir_vec = max_tip - tip_traj[prev_idx]
++    if torch.linalg.norm(dir_vec) < 1e-6:
++      dir_vec = max_tip - tip_traj[0]
++    fallback = torch.tensor([1.0, 0.0, 0.0], device=self.env.device)
++    normal = dir_vec.clone()
++    normal[2] = 0.0
++    normal = _safe_normalize(normal, fallback)
++    up = torch.tensor([0.0, 0.0, 1.0], device=self.env.device)
++    if abs(float(torch.dot(normal, up).item())) > 0.95:
++      normal = fallback
++    tangent = _safe_normalize(
++      torch.cross(up, normal, dim=0),
++      torch.tensor([0.0, 1.0, 0.0], device=self.env.device),
++    )
++    vertical = _safe_normalize(torch.cross(normal, tangent, dim=0), up)
++    rot = torch.stack([normal, tangent, vertical], dim=1)
++    self.target_quat = _rotation_matrix_to_quat(rot)
++    self.target_center = max_tip + normal * self.target_half_thickness
++    self.start_to_target_distance = float(torch.linalg.norm(self.target_center - start_base).item())
++
++    hand_label = "左拳" if chosen_hand == "left" else "右拳"
++    print(
++      f"[PunchForce] 自动选手结果: {hand_label} "
++      f"(left={left_max:.3f}m, right={right_max:.3f}m)"
++    )
++
++  def _write_target_pose(self):
++    if self.target is None:
++      return
++    pose = torch.cat([self.target_center, self.target_quat]).unsqueeze(0)
++    self.target.write_mocap_pose_to_sim(pose)
++
++  def on_step(self):
++    self._write_target_pose()
++    total_force = 0.0
++    any_contact = False
++    for sensor in self.sensors[self.selected_hand]:
++      data = sensor.data
++      if data.found is None or data.force is None:
++        continue
++      found = data.found[0]
++      force = data.force[0]
++      for i in range(found.shape[0]):
++        if found[i] <= 0:
++          continue
++        fmag = torch.linalg.norm(force[i]).item()
++        if fmag > 0:
++          any_contact = True
++          total_force = max(total_force, fmag)
++
++    if any_contact and total_force > self.episode_max_force:
++      self.episode_max_force = total_force
++      self.max_force = max(self.max_force, total_force)
++      self.has_contact = True
++      hand_label = "左拳" if self.selected_hand == "left" else "右拳"
++      print(f"[PunchForce] {hand_label}力度：{total_force:.2f} N")
++
++  def on_reset(self):
++    if self.has_contact:
++      hand_label = "左拳" if self.selected_hand == "left" else "右拳"
++      print(
++        f"[PunchForce] {hand_label} episode summary - Max force: {self.episode_max_force:.2f} N"
++      )
++    self.episode_max_force = 0.0
++    self.has_contact = False
++    self._plan_target_pose()
++    self._write_target_pose()
++
++  @property
++  def label_text(self) -> str:
++    hand_label = "左拳" if self.selected_hand == "left" else "右拳"
++    return (
++      f"{hand_label} 最大击打力度: {self.max_force:.2f} N"
++      f"<br>起始位置到拳靶距离约: {self.start_to_target_distance:.3f} m"
++    )
++
++  @property
++  def label_pos(self) -> tuple[float, float, float]:
++    pos = self.target_center + torch.tensor(
++      [0.0, 0.0, self.target_half_height + 0.10], device=self.env.device
++    )
++    return (float(pos[0].item()), float(pos[1].item()), float(pos[2].item()))
++
++
++class _PunchViserPlayViewer(ViserPlayViewer):
++  """Viser viewer with left-bottom HUD force text (no floating scene label)."""
++
++  def __init__(self, env, policy, tracker: _PunchTracker):
++    super().__init__(env, policy)
++    self._punch_tracker = tracker
++    self._punch_hud = None
++
++  def setup(self) -> None:
++    super().setup()
++
++    # Screen-space HUD in bottom-left (instead of an in-scene floating label).
++    self._punch_hud = self._server.gui.add_html("")
++    self._punch_hud.content = (
++      '<div style="position:fixed;left:18px;bottom:18px;'
++      "padding:8px 12px;border-radius:6px;"
++      "background:rgba(0,0,0,0.62);color:#ffffff;"
++      'font-size:14px;line-height:1.2;z-index:9999;'
++      'font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;">'
++      f'{self._punch_tracker.label_text}'
++      "</div>"
++    )
++
++  def sync_env_to_viewer(self) -> None:
++    super().sync_env_to_viewer()
++    if self._punch_hud is not None:
++      self._punch_hud.content = (
++        '<div style="position:fixed;left:18px;bottom:18px;'
++        "padding:8px 12px;border-radius:6px;"
++        "background:rgba(0,0,0,0.62);color:#ffffff;"
++        'font-size:20px;line-height:1.2;z-index:9999;'
++        'font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;">'
++        f'{self._punch_tracker.label_text}'
++        "</div>"
++      )
++
++
++class _StepCallbackWrapper:
++  """Thin wrapper to inject a callback after each env step/reset."""
++
++  def __init__(self, env, callback):
++    self._env = env
++    self._callback = callback
++
++  @property
++  def unwrapped(self):
++    return self._env.unwrapped
++
++  def __getattr__(self, name: str):
++    return getattr(self._env, name)
++
++  def step(self, action):
++    result = self._env.step(action)
++    self._callback.on_step()
++    return result
++
++  def reset(self, **kwargs):
++    result = self._env.reset(**kwargs)
++    self._callback.on_reset()
++    return result
++
++
+ def run_play(task_id: str, cfg: PlayConfig):
+   configure_torch_backends()
+ 
+@@ -47,6 +329,9 @@ def run_play(task_id: str, cfg: PlayConfig):
+   env_cfg = load_env_cfg(task_id, play=True)
+   agent_cfg = load_rl_cfg(task_id)
+ 
++  if cfg.seed is not None:
++    env_cfg.seed = cfg.seed
++
+   DUMMY_MODE = cfg.agent in {"zero", "random"}
+   TRAINED_MODE = not DUMMY_MODE
+ 
+@@ -70,17 +355,15 @@ def run_play(task_id: str, cfg: PlayConfig):
+     motion_cmd = env_cfg.commands["motion"]
+     assert isinstance(motion_cmd, MotionCommandCfg)
+ 
+-    # Check for local motion file first (works for both dummy and trained modes).
+-    if cfg.motion_file is not None and Path(cfg.motion_file).exists():
+-      print(f"[INFO]: Using local motion file: {cfg.motion_file}")
+-      motion_cmd.motion_file = cfg.motion_file
+-    elif DUMMY_MODE:
+-      if not cfg.registry_name:
+-        raise ValueError(
+-          "Tracking tasks require either:\n"
+-          "  --motion-file /path/to/motion.npz (local file)\n"
+-          "  --registry-name your-org/motions/motion-name (download from WandB)"
+-        )
++    if cfg.motion_file is not None:
++      motion_path = Path(cfg.motion_file).expanduser().resolve()
++      if not motion_path.exists():
++        raise FileNotFoundError(f"Motion file not found: {motion_path}")
++      motion_cmd.motion_file = str(motion_path)
++    elif not motion_cmd.motion_file:
++      raise ValueError(
++        "Tracking tasks require --motion-file pointing to a local motion npz."
++      )
+   log_dir: Path | None = None
+   resume_path: Path | None = None
+   if TRAINED_MODE:
+@@ -121,6 +404,24 @@ def run_play(task_id: str, cfg: PlayConfig):
+     )
+   env = ManagerBasedRlEnv(cfg=env_cfg, device=device, render_mode=render_mode)
+ 
++  # Enable punch force monitoring if the scene contains fist_target_contact sensors.
++  if any(
++    isinstance(s, ContactSensor) and "fist_target" in name
++    for name, s in env.scene.sensors.items()
++  ):
++    tracker = _PunchTracker(
++      env,
++      tip_offset=cfg.punch_tip_offset,
++      punch_hand=cfg.punch_hand,
++    )
++    env = _StepCallbackWrapper(env, tracker)
++    print(
++      f"[INFO] Punch force monitoring enabled "
++      f"(hand={cfg.punch_hand}, mode=fixed-single-target)"
++    )
++  else:
++    print("[WARN] No fist_target_contact sensors found - punch tracking disabled")
++
+   if TRAINED_MODE and cfg.video:
+     print("[INFO] Recording videos during play")
+     assert log_dir is not None  # log_dir is set in TRAINED_MODE block
+@@ -170,7 +471,10 @@ def run_play(task_id: str, cfg: PlayConfig):
+   if resolved_viewer == "native":
+     NativeMujocoViewer(env, policy).run()
+   elif resolved_viewer == "viser":
+-    ViserPlayViewer(env, policy).run()
++    if "tracker" in locals():
++      _PunchViserPlayViewer(env, policy, tracker).run()
++    else:
++      ViserPlayViewer(env, policy).run()
+   else:
+     raise RuntimeError(f"Unsupported viewer backend: {resolved_viewer}")
+ 
+diff --git a/scripts/train.py b/scripts/train.py
+index f727e28..066cb37 100644
+--- a/scripts/train.py
++++ b/scripts/train.py
+@@ -10,6 +10,12 @@ from typing import Literal, cast
+ 
+ import tyro
+ 
++# Ensure project root is importable when running as:
++#   python scripts/train.py ...
++PROJECT_ROOT = Path(__file__).resolve().parents[1]
++if str(PROJECT_ROOT) not in sys.path:
++  sys.path.insert(0, str(PROJECT_ROOT))
++
+ from mjlab.envs import ManagerBasedRlEnv, ManagerBasedRlEnvCfg
+ from mjlab.rl import MjlabOnPolicyRunner, RslRlBaseRunnerCfg, RslRlVecEnvWrapper
+ from mjlab.tasks.registry import list_tasks, load_env_cfg, load_rl_cfg, load_runner_cls
+diff --git a/simulate/mujoco/lib/libmujoco.so b/simulate/mujoco/lib/libmujoco.so
+deleted file mode 120000
+index 7728454..0000000
+--- a/simulate/mujoco/lib/libmujoco.so
++++ /dev/null
+@@ -1 +0,0 @@
+-libmujoco.so.3.3.6
+\ No newline at end of file
+diff --git a/simulate/mujoco/lib/libmujoco.so b/simulate/mujoco/lib/libmujoco.so
+new file mode 100755
+index 0000000..82ba45a
+Binary files /dev/null and b/simulate/mujoco/lib/libmujoco.so differ
+diff --git a/src/tasks/tracking/config/g1/env_cfgs.py b/src/tasks/tracking/config/g1/env_cfgs.py
+index 6eedfe4..1f8cc89 100644
+--- a/src/tasks/tracking/config/g1/env_cfgs.py
++++ b/src/tasks/tracking/config/g1/env_cfgs.py
+@@ -1,11 +1,16 @@
+ """Unitree G1 flat tracking environment configurations."""
+ 
++import mujoco
++import numpy as np
++from pathlib import Path
++
+ from mjlab.asset_zoo.robots import (
+   G1_ACTION_SCALE,
+   get_g1_robot_cfg,
+ )
+ from mjlab.envs import ManagerBasedRlEnvCfg
+ from mjlab.envs.mdp.actions import JointPositionActionCfg
++from mjlab.entity import EntityCfg
+ from mjlab.managers.observation_manager import ObservationGroupCfg
+ from mjlab.sensor import ContactMatch, ContactSensorCfg
+ from mjlab.tasks.tracking.mdp import MotionCommandCfg
+@@ -13,6 +18,125 @@ from mjlab.tasks.tracking.mdp import MotionCommandCfg
+ from src.tasks.tracking.tracking_env_cfg import make_tracking_env_cfg
+ 
+ 
++_WALL_LOGO_PNG = (
++  Path(__file__).resolve().parents[5]
++  / "src"
++  / "tasks"
++  / "tracking"
++  / "config"
++  / "g1"
++  / "background.png"
++)
++_WALL_LOGO_MESH = (
++  Path(__file__).resolve().parents[5]
++  / "src"
++  / "tasks"
++  / "tracking"
++  / "config"
++  / "g1"
++  / "training_wall_logo_plane.obj"
++)
++
++
++def _get_wall_logo_texture_file() -> str | None:
++  """Return a contrast-enhanced wall texture file path."""
++  if not _WALL_LOGO_PNG.exists():
++    return None
++  try:
++    from PIL import Image, ImageEnhance
++  except Exception:
++    return str(_WALL_LOGO_PNG)
++
++  output = _WALL_LOGO_PNG.with_name(f"{_WALL_LOGO_PNG.stem}_contrast.png")
++  try:
++    img = Image.open(_WALL_LOGO_PNG).convert("RGB")
++    # Slightly increase contrast for clearer wall presentation.
++    img = ImageEnhance.Contrast(img).enhance(1.35)
++    img.save(output)
++    return str(output)
++  except Exception:
++    return str(_WALL_LOGO_PNG)
++
++
++def _get_punch_target_spec() -> mujoco.MjSpec:
++  """Create a single punch target as a cylinder with its flat face toward impact."""
++  spec = mujoco.MjSpec()
++  target = spec.worldbody.add_body(name="punch_target")
++  geom = target.add_geom(
++    name="target_pad",
++    type=mujoco.mjtGeom.mjGEOM_CYLINDER,
++    # size=[radius, half-length], so total thickness is 0.10m.
++    size=[0.16, 0.05],
++  )
++  # MuJoCo cylinder axis is local +Z; rotate geom so cylinder axis aligns with body +X.
++  # Then the runtime body orientation in play.py keeps the cylinder flat face toward punch.
++  geom.quat = [0.7071068, 0.0, -0.7071068, 0.0]
++  geom.rgba = [0.9, 0.1, 0.1, 1.0]
++  geom.mass = 2.0
++  geom.friction = np.array([0.8, 0.05, 0.01])
++  geom.solimp = np.array([0.9, 0.95, 0.001, 0.0, 0.0])
++  geom.solref = np.array([0.01, 1.0])
++  force_site = target.add_site(name="force_sensor", pos=[0.0, 0.0, 0.18], size=[1e-6])
++  force_site.rgba = [1.0, 1.0, 1.0, 0.0]
++  return spec
++
++
++def _get_training_wall_spec() -> mujoco.MjSpec:
++  """Create a white training wall: length 10m, height 2m."""
++  spec = mujoco.MjSpec()
++  wall = spec.worldbody.add_body(name="training_wall")
++  geom = wall.add_geom(
++    name="training_wall_geom",
++    type=mujoco.mjtGeom.mjGEOM_BOX,
++    # half-sizes: length=10m, thickness=0.10m, height=2m
++    size=[5.0, 0.05, 1.0],
++  )
++  geom.rgba = [1.0, 1.0, 1.0, 1.0]
++  geom.friction = np.array([0.8, 0.05, 0.01])
++  geom.solimp = np.array([0.9, 0.95, 0.001, 0.0, 0.0])
++  geom.solref = np.array([0.01, 1.0])
++
++  # Add a MuJoCo-native textured logo plane so it stays fixed in world coordinates.
++  logo_tex_file = _get_wall_logo_texture_file()
++  if logo_tex_file is not None and _WALL_LOGO_MESH.exists():
++    spec.add_texture(
++      name="training_wall_logo_tex",
++      type=mujoco.mjtTexture.mjTEXTURE_2D,
++      file=logo_tex_file,
++      nchannel=3,
++      vflip=0,
++    )
++    spec.add_material(
++      name="training_wall_logo_mat",
++      # Bind texture to both USER(role=0) and RGB(role=1) so Viser path can read it.
++      textures=["training_wall_logo_tex", "training_wall_logo_tex"],
++      texuniform=0,
++      texrepeat=[1.0, 1.0],
++      emission=1.0,
++      specular=0.0,
++      reflectance=0.0,
++      rgba=[1.0, 1.0, 1.0, 1.0],
++    )
++    spec.add_mesh(
++      name="training_wall_logo_mesh",
++      file=str(_WALL_LOGO_MESH),
++      inertia=mujoco.mjtMeshInertia.mjMESH_INERTIA_SHELL,
++    )
++    logo_geom = wall.add_geom(
++      name="training_wall_logo_geom",
++      type=mujoco.mjtGeom.mjGEOM_MESH,
++      meshname="training_wall_logo_mesh",
++      # Center the logo on wall and keep slight offset to avoid z-fighting.
++      pos=[0.0, -0.056, 0.0],
++    )
++    logo_geom.rgba = [1.0, 1.0, 1.0, 1.0]
++    logo_geom.material = "training_wall_logo_mat"
++    logo_geom.contype = 0
++    logo_geom.conaffinity = 0
++
++  return spec
++
++
+ def unitree_g1_flat_tracking_env_cfg(
+   has_state_estimation: bool = True,
+   play: bool = False,
+@@ -98,4 +222,54 @@ def unitree_g1_flat_tracking_env_cfg(
+ 
+     motion_cmd.sampling_mode = "start"
+ 
++    # Add one fixed punch target for end-of-motion force detection.
++    cfg.scene.entities["punch_target"] = EntityCfg(
++      init_state=EntityCfg.InitialStateCfg(pos=(0.50, 0.15, 0.98)),
++      spec_fn=_get_punch_target_spec,
++    )
++
++    # Add one fixed white training wall at robot left side (5m).
++    # The default convention here is x-forward, y-left, z-up, so left is +y.
++    cfg.scene.entities["training_wall"] = EntityCfg(
++      init_state=EntityCfg.InitialStateCfg(pos=(0.0, 5.0, 1.0)),
++      spec_fn=_get_training_wall_spec,
++    )
++    right_fist_contact = ContactSensorCfg(
++      name="fist_target_contact_right",
++      primary=ContactMatch(
++        mode="body",
++        pattern="right_wrist_yaw_link",
++        entity="robot",
++      ),
++      secondary=ContactMatch(
++        mode="body",
++        pattern="punch_target",
++        entity="punch_target",
++      ),
++      fields=("found", "force"),
++      reduce="netforce",
++      num_slots=1,
++      track_air_time=True,
++    )
++    cfg.scene.sensors = cfg.scene.sensors + (right_fist_contact,)
++
++    left_fist_contact = ContactSensorCfg(
++      name="fist_target_contact_left",
++      primary=ContactMatch(
++        mode="body",
++        pattern="left_wrist_yaw_link",
++        entity="robot",
++      ),
++      secondary=ContactMatch(
++        mode="body",
++        pattern="punch_target",
++        entity="punch_target",
++      ),
++      fields=("found", "force"),
++      reduce="netforce",
++      num_slots=1,
++      track_air_time=True,
++    )
++    cfg.scene.sensors = cfg.scene.sensors + (left_fist_contact,)
++
+   return cfg
+diff --git a/src/tasks/tracking/config/g1/rl_cfg.py b/src/tasks/tracking/config/g1/rl_cfg.py
+index 342f27e..c4a96d1 100644
+--- a/src/tasks/tracking/config/g1/rl_cfg.py
++++ b/src/tasks/tracking/config/g1/rl_cfg.py
+@@ -42,5 +42,5 @@ def unitree_g1_tracking_ppo_runner_cfg() -> RslRlOnPolicyRunnerCfg:
+     experiment_name="g1_tracking",
+     save_interval=500,
+     num_steps_per_env=24,
+-    max_iterations=30001,
++    max_iterations=10001,
+   )
+\ No newline at end of file
+diff --git a/src/tasks/tracking/tracking_env_cfg.py b/src/tasks/tracking/tracking_env_cfg.py
+index 3356c17..2a6ae11 100644
+--- a/src/tasks/tracking/tracking_env_cfg.py
++++ b/src/tasks/tracking/tracking_env_cfg.py
+@@ -211,8 +211,8 @@ def make_tracking_env_cfg() -> ManagerBasedRlEnvCfg:
+   rewards: dict[str, RewardTermCfg] = {
+     "motion_global_root_pos": RewardTermCfg(
+       func=mdp.motion_global_anchor_position_error_exp,
+-      weight=0.5,
+-      params={"command_name": "motion", "std": 0.3},
++      weight=2.0,
++      params={"command_name": "motion", "std": 0.15},
+     ),
+     "motion_global_root_ori": RewardTermCfg(
+       func=mdp.motion_global_anchor_orientation_error_exp,
+@@ -221,8 +221,8 @@ def make_tracking_env_cfg() -> ManagerBasedRlEnvCfg:
+     ),
+     "motion_body_pos": RewardTermCfg(
+       func=mdp.motion_relative_body_position_error_exp,
+-      weight=1.0,
+-      params={"command_name": "motion", "std": 0.3},
++      weight=3.0,
++      params={"command_name": "motion", "std": 0.16},
+     ),
+     "motion_body_ori": RewardTermCfg(
+       func=mdp.motion_relative_body_orientation_error_exp,
+@@ -239,7 +239,7 @@ def make_tracking_env_cfg() -> ManagerBasedRlEnvCfg:
+       weight=1.0,
+       params={"command_name": "motion", "std": 3.14},
+     ),
+-    "action_rate_l2": RewardTermCfg(func=mdp.action_rate_l2, weight=-1e-1),
++    "action_rate_l2": RewardTermCfg(func=mdp.action_rate_l2, weight=-0.03),
+     "joint_limit": RewardTermCfg(
+       func=mdp.joint_pos_limits,
+       weight=-10.0,
+@@ -250,6 +250,61 @@ def make_tracking_env_cfg() -> ManagerBasedRlEnvCfg:
+       weight=-10.0,
+       params={"sensor_name": "self_collision", "force_threshold": 10.0},
+     ),
++    
++    
++    
++    
++    "motion_dodge_torso_pos": RewardTermCfg(
++      func=mdp.motion_relative_body_position_error_exp,
++      weight=4.0,
++      params={
++        "command_name": "motion",
++        "std": 0.10,
++        "body_names": (
++          "pelvis",
++          "torso_link",
++          "left_shoulder_roll_link",
++          "right_shoulder_roll_link",
++          "left_elbow_link",
++          "right_elbow_link",
++          "left_wrist_yaw_link",
++          "right_wrist_yaw_link",
++        ),
++      },
++    ),
++    "motion_dodge_torso_ori": RewardTermCfg(
++      func=mdp.motion_relative_body_orientation_error_exp,
++      weight=2.0,
++      params={
++        "command_name": "motion",
++        "std": 0.18,
++        "body_names": (
++          "pelvis",
++          "torso_link",
++          "left_shoulder_roll_link",
++          "right_shoulder_roll_link",
++        ),
++      },
++    ),
++    "motion_feet_stay_pos": RewardTermCfg(
++      func=mdp.motion_relative_body_position_error_exp,
++      weight=2.0,
++      params={
++        "command_name": "motion",
++        "std": 0.08,
++        "body_names": (
++          "left_ankle_roll_link",
++          "right_ankle_roll_link",
++        ),
++      },
++    ),
++
++
++
++
++
++    
++    
+   }
+ 
+   ##

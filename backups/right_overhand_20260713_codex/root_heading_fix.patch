@@ -1,0 +1,38 @@
+--- /root/gpufree-data/RoboJuDo/robojudo/policy/mjlab_tracking_policy.py
++++ /root/gpufree-data/RoboJuDo/robojudo/policy/mjlab_tracking_policy.py
+@@ -113,16 +113,16 @@
+-    def _aligned_reference_rotation(self, torso_quat):
++    def _aligned_reference_rotation(self, base_quat):
+         reference_quat = self._wxyz_to_xyzw(
+             self.reference_body_quat_wxyz[
+                 self.motion_frame, self.anchor_body_index
+             ]
+         )
+         reference_rotation = sRot.from_quat(reference_quat)
+         if self.reference_yaw_alignment is None:
+-            reference_start = self._wxyz_to_xyzw(
+-                self.reference_body_quat_wxyz[0, self.anchor_body_index]
++            reference_root_start = self._wxyz_to_xyzw(
++                self.reference_body_quat_wxyz[0, 0]
+             )
+             self.reference_yaw_alignment = (
+-                self._yaw_rotation(torso_quat)
+-                * self._yaw_rotation(reference_start).inv()
++                self._yaw_rotation(base_quat)
++                * self._yaw_rotation(reference_root_start).inv()
+             )
+         return self.reference_yaw_alignment * reference_rotation
+@@ -150,10 +150,13 @@
+     def get_observation(self, env_data, ctrl_data):
++        base_quat = np.asarray(env_data.base_quat, dtype=np.float64)
+         torso_quat = np.asarray(env_data.torso_quat, dtype=np.float64)
++        if base_quat.shape != (4,) or not np.isfinite(base_quat).all():
++            raise ValueError("base_quat must be a finite xyzw quaternion")
+         if torso_quat.shape != (4,) or not np.isfinite(torso_quat).all():
+             raise ValueError("torso_quat must be a finite xyzw quaternion")
+ 
+-        aligned_reference = self._aligned_reference_rotation(torso_quat)
++        aligned_reference = self._aligned_reference_rotation(base_quat)
+         torso_rotation = sRot.from_quat(torso_quat)
+         target_rotation = torso_rotation.inv() * aligned_reference
+         target_orientation_6d = target_rotation.as_matrix()[:, :2].reshape(-1)

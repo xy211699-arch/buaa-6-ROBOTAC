@@ -1,0 +1,8 @@
+--- tests/test_mjlab_tracking_policy.py
++++ tests/test_mjlab_tracking_policy.py
+@@ -175,0 +176 @@
++        self.assertTrue(cfg.do_safety_check)
+--- robojudo/config/g1/g1_custom_cfg.py
++++ robojudo/config/g1/g1_custom_cfg.py
+@@ -69,0 +70 @@
++    do_safety_check: bool = True

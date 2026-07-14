@@ -1,0 +1,28 @@
+--- robojudo/config/g1/g1_custom_cfg.py
++++ robojudo/config/g1/g1_custom_cfg.py
+@@ -29,0 +30 @@
++from .policy.g1_mjlab_tracking_policy_cfg import G1MjlabTrackingPolicyCfg  # noqa: F401
+@@ -61,0 +63,23 @@
++
++
++@cfg_registry.register
++class g1_mjlab_loco_right_overhand(RlLocoMimicPipelineCfg):
++    pipeline_type: str = "MjlabLocoActionPipeline"
++    robot: str = "g1"
++    env: G1MujocoEnvCfg = G1MujocoEnvCfg()
++
++    ctrl: list[KeyboardCtrlCfg] = [
++        KeyboardCtrlCfg(
++            triggers={
++                "Key.esc": "[SHUTDOWN]",
++                "`": "[SIM_REBORN]",
++                "1": "[POLICY_MIMIC]",
++                "0": "[POLICY_LOCO]",
++            }
++        ),
++    ]
++
++    loco_policy: G1MjlabVelocityPolicyCfg = G1MjlabVelocityPolicyCfg()
++    mimic_policies: list[G1MjlabTrackingPolicyCfg] = [
++        G1MjlabTrackingPolicyCfg(policy_name="right_overhand"),
++    ]

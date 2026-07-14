@@ -1,0 +1,5 @@
+--- /root/gpufree-data/RoboJuDo/robojudo/config/g1/policy/g1_mjlab_tracking_policy_cfg.py
++++ /root/gpufree-data/RoboJuDo/robojudo/config/g1/policy/g1_mjlab_tracking_policy_cfg.py
+@@ -103,1 +103,1 @@
+-    anchor_body_index: int = 7
++    anchor_body_index: int = 15

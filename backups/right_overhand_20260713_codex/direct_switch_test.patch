@@ -1,0 +1,11 @@
+--- tests/test_mjlab_tracking_policy.py
++++ tests/test_mjlab_tracking_policy.py
+@@ -145 +145 @@
+-    def test_full_body_override_only_runs_during_active_interpolation(self):
++    def test_full_body_static_override_is_disabled_for_every_state(self):
+@@ -153 +153 @@
+-        self.assertTrue(
++        self.assertFalse(
+@@ -156 +156 @@
+-        self.assertTrue(
++        self.assertFalse(

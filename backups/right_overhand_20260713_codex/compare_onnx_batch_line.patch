@@ -1,0 +1,11 @@
+--- /root/gpufree-data/RoboJuDo/backups/right_overhand_20260713_codex/compare_onnx_trace.py
++++ /root/gpufree-data/RoboJuDo/backups/right_overhand_20260713_codex/compare_onnx_trace.py
+@@ -23,1 +23,7 @@
+-    actual_actions = session.run(["actions"], {"obs": observations})[0]
++    actual_actions = np.concatenate(
++        [
++            session.run(["actions"], {"obs": observation[None, :]})[0]
++            for observation in observations
++        ],
++        axis=0,
++    )

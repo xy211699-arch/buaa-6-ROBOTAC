@@ -1,0 +1,12 @@
+--- /tmp/diagnose_robojudo_action.py
++++ /tmp/diagnose_robojudo_action.py
+@@ -82,0 +83,9 @@
++    for return_step in range(100):
++        pipeline.step()
++        if return_step % 10 == 0 or return_step == 99:
++            print(
++                f"return_step={return_step:03d}",
++                f"height={pipeline.env.base_pos[2]:.6f}",
++                f"tilt={tilt_angle(pipeline.env.base_quat):.6f}",
++            )
++

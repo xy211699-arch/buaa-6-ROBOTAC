@@ -1,0 +1,48 @@
+--- tests/test_mjlab_tracking_policy.py
++++ tests/test_mjlab_tracking_policy.py
+@@ -159,22 +159,23 @@
+-    def test_locomotion_command_can_be_stopped_before_action(self):
+-    def test_return_blend_moves_from_action_target_to_live_loco_target(self):
+-        action_target = np.zeros(29, dtype=np.float32)
+-        loco_target = np.ones(29, dtype=np.float32)
+-
+-        first = MjlabLocoActionPipeline.blend_return_target(
+-            action_target, loco_target, step=0, duration=50
+-        )
+-        last = MjlabLocoActionPipeline.blend_return_target(
+-            action_target, loco_target, step=49, duration=50
+-        )
+-
+-        np.testing.assert_allclose(first, 0.02)
+-        np.testing.assert_allclose(last, 1.0)
+-        policy = MjlabVelocityPolicy(
+-            G1MjlabVelocityPolicyCfg(model_path=LOCO_MODEL_PATH), device="cpu"
+-        )
+-        policy.command[:] = [0.5, 0.2, 0.3]
+-
+-        policy.stop()
+-
+-        np.testing.assert_allclose(policy.command, 0.0)
++    def test_locomotion_command_can_be_stopped_before_action(self):
++        policy = MjlabVelocityPolicy(
++            G1MjlabVelocityPolicyCfg(model_path=LOCO_MODEL_PATH), device="cpu"
++        )
++        policy.command[:] = [0.5, 0.2, 0.3]
++
++        policy.stop()
++
++        np.testing.assert_allclose(policy.command, 0.0)
++
++    def test_return_blend_moves_from_action_target_to_live_loco_target(self):
++        action_target = np.zeros(29, dtype=np.float32)
++        loco_target = np.ones(29, dtype=np.float32)
++
++        first = MjlabLocoActionPipeline.blend_return_target(
++            action_target, loco_target, step=0, duration=50
++        )
++        last = MjlabLocoActionPipeline.blend_return_target(
++            action_target, loco_target, step=49, duration=50
++        )
++
++        np.testing.assert_allclose(first, 0.02)
++        np.testing.assert_allclose(last, 1.0)

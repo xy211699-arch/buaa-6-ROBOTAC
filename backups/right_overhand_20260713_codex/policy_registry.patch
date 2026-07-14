@@ -1,0 +1,7 @@
+--- robojudo/policy/__init__.py
++++ robojudo/policy/__init__.py
+@@ -37,3 +37,4 @@
+ policy_registry.add("TwistPolicy", ".twist_policy")
+ policy_registry.add("ProtoMotionsTrackerPolicy", ".protomotions_tracker_policy")
+ policy_registry.add("MjlabVelocityPolicy", ".mjlab_velocity_policy")
++policy_registry.add("MjlabTrackingPolicy", ".mjlab_tracking_policy")

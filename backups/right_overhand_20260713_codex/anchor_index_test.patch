@@ -1,0 +1,10 @@
+--- /root/gpufree-data/RoboJuDo/tests/test_mjlab_tracking_policy.py
++++ /root/gpufree-data/RoboJuDo/tests/test_mjlab_tracking_policy.py
+@@ -38,1 +38,1 @@
+-        body_quat_w = np.zeros((2, 8, 4), dtype=np.float32)
++        body_quat_w = np.zeros((2, 30, 4), dtype=np.float32)
+@@ -74,0 +75,1 @@
++        self.assertEqual(self.policy.anchor_body_index, 15)
+@@ -116,1 +117,1 @@
+-            self.policy.reference_body_quat_wxyz[:, 7] = sRot.from_euler("z", 50, degrees=True).as_quat()[[3, 0, 1, 2]]
++            self.policy.reference_body_quat_wxyz[:, self.policy.anchor_body_index] = sRot.from_euler("z", 50, degrees=True).as_quat()[[3, 0, 1, 2]]

@@ -1,0 +1,17 @@
+--- tests/test_mjlab_tracking_policy.py
++++ tests/test_mjlab_tracking_policy.py
+@@ -159,0 +160,13 @@
++    def test_return_blend_moves_from_action_target_to_live_loco_target(self):
++        action_target = np.zeros(29, dtype=np.float32)
++        loco_target = np.ones(29, dtype=np.float32)
++
++        first = MjlabLocoActionPipeline.blend_return_target(
++            action_target, loco_target, step=0, duration=50
++        )
++        last = MjlabLocoActionPipeline.blend_return_target(
++            action_target, loco_target, step=49, duration=50
++        )
++
++        np.testing.assert_allclose(first, 0.02)
++        np.testing.assert_allclose(last, 1.0)
++

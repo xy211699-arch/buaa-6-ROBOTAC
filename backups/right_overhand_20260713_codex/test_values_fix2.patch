@@ -1,0 +1,17 @@
+--- tests/test_mjlab_tracking_policy.py
++++ tests/test_mjlab_tracking_policy.py
+@@ -27 +27 @@
+-            [np.arange(29, dtype=np.float32), np.arange(29, dtype=np.float32) + 100]
++            [np.arange(29, dtype=np.float32), np.arange(29, dtype=np.float32) + 30]
+@@ -30 +30 @@
+-            [np.arange(29, dtype=np.float32) + 30, np.arange(29, dtype=np.float32) + 130]
++            [np.arange(29, dtype=np.float32) + 30, np.arange(29, dtype=np.float32) + 60]
+@@ -76 +76 @@
+-        self.policy.last_action = np.arange(29, dtype=np.float32) + 90
++        self.policy.last_action = np.arange(29, dtype=np.float32) + 60
+@@ -92 +92 @@
+-                np.arange(29, dtype=np.float32) + 90,
++                np.arange(29, dtype=np.float32) + 60,
+@@ -124 +124 @@
+-        np.testing.assert_allclose(obs[:29], np.arange(29) + 100)
++        np.testing.assert_allclose(obs[:29], np.arange(29) + 30)

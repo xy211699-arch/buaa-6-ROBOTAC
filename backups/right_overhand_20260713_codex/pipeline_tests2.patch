@@ -1,0 +1,40 @@
+--- tests/test_mjlab_tracking_policy.py
++++ tests/test_mjlab_tracking_policy.py
+@@ -11,0 +12,6 @@
++from robojudo.config.g1.policy.g1_mjlab_velocity_policy_cfg import (
++    G1MjlabVelocityPolicyCfg,
++)
++from robojudo.pipeline.mjlab_loco_action_pipeline import MjlabLocoActionPipeline
++from robojudo.pipeline.rl_loco_mimic_pipeline import PolicyInterpManager
++from robojudo.policy.mjlab_velocity_policy import MjlabVelocityPolicy
+@@ -13,0 +20 @@
++LOCO_MODEL_PATH = "/root/gpufree-data/RoboJuDo/locomotion_v2/policy.onnx"
+@@ -134,0 +142,27 @@
++class TestMjlabLocoActionPipeline(unittest.TestCase):
++    def test_full_body_override_only_runs_during_active_interpolation(self):
++        state = PolicyInterpManager.InterpState
++
++        self.assertFalse(
++            MjlabLocoActionPipeline.transition_override_active(state.IDLE)
++        )
++        self.assertFalse(
++            MjlabLocoActionPipeline.transition_override_active(state.START)
++        )
++        self.assertTrue(
++            MjlabLocoActionPipeline.transition_override_active(state.IN_PROGRESS)
++        )
++        self.assertTrue(
++            MjlabLocoActionPipeline.transition_override_active(state.END)
++        )
++
++    def test_locomotion_command_can_be_stopped_before_action(self):
++        policy = MjlabVelocityPolicy(
++            G1MjlabVelocityPolicyCfg(model_path=LOCO_MODEL_PATH), device="cpu"
++        )
++        policy.command[:] = [0.5, 0.2, 0.3]
++
++        policy.stop()
++
++        np.testing.assert_allclose(policy.command, 0.0)
++
++

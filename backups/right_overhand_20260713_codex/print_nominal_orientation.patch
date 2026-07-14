@@ -1,0 +1,5 @@
+--- /tmp/compare_robojudo_nominal_obs.py
++++ /tmp/compare_robojudo_nominal_obs.py
+@@ -49,0 +50,2 @@
++    print(f"expected_anchor_ori={expected[58:64].tolist()}")
++    print(f"actual_anchor_ori={actual[58:64].tolist()}")

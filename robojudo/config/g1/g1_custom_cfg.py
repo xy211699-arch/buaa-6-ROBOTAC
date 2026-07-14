@@ -1,0 +1,118 @@
+from robojudo.config import cfg_registry
+from robojudo.controller.ctrl_cfgs import (
+    JoystickCtrlCfg,  # noqa: F401
+    KeyboardCtrlCfg,  # noqa: F401
+    UnitreeCtrlCfg,  # noqa: F401
+)
+from robojudo.pipeline.pipeline_cfgs import (
+    RlLocoMimicPipelineCfg,  # noqa: F401
+    RlMultiPolicyPipelineCfg,  # noqa: F401
+    RlPipelineCfg,  # noqa: F401
+)
+
+from .ctrl.g1_beyondmimic_ctrl_cfg import G1BeyondmimicCtrlCfg  # noqa: F401
+from .ctrl.g1_motion_ctrl_cfg import (  # noqa: F401
+    G1MotionCtrlCfg,
+    G1MotionH2HCtrlCfg,
+    G1MotionKungfuBotCtrlCfg,
+    G1MotionTwistCtrlCfg,
+)
+from .ctrl.g1_twist_redis_ctrl_cfg import G1TwistRedisCtrlCfg  # noqa: F401
+from .env.g1_dummy_env_cfg import G1DummyEnvCfg  # noqa: F401
+from .env.g1_mujuco_env_cfg import G1_12MujocoEnvCfg, G1_23MujocoEnvCfg, G1MujocoEnvCfg  # noqa: F401
+from .env.g1_real_env_cfg import G1RealEnvCfg, G1UnitreeCfg  # noqa: F401
+from .policy.g1_amo_policy_cfg import G1AmoPolicyCfg  # noqa: F401
+from .policy.g1_amp_recovery_policy_cfg import G1AmpRecoveryPolicyCfg  # noqa: F401
+from .policy.g1_asap_policy_cfg import G1AsapLocoPolicyCfg, G1AsapPolicyCfg  # noqa: F401
+from .policy.g1_beyondmimic_policy_cfg import G1BeyondMimicPolicyCfg  # noqa: F401
+from .policy.g1_h2h_policy_cfg import G1H2HPolicyCfg  # noqa: F401
+from .policy.g1_kungfubot_policy_cfg import G1KungfuBotGeneralPolicyCfg, G1KungfuBotPolicyCfg  # noqa: F401
+from .policy.g1_mjlab_velocity_policy_cfg import G1MjlabVelocityPolicyCfg  # noqa: F401
+from .policy.g1_mjlab_tracking_policy_cfg import G1MjlabTrackingPolicyCfg  # noqa: F401
+from .policy.g1_smooth_policy_cfg import G1SmoothPolicyCfg  # noqa: F401
+from .policy.g1_twist_policy_cfg import G1TwistPolicyCfg  # noqa: F401
+from .policy.g1_unitree_policy_cfg import G1UnitreePolicyCfg, G1UnitreeWoGaitPolicyCfg  # noqa: F401
+
+# ======================== Custom Configs ======================== #
+"""
+Add your custom config here.
+"""
+
+
+@cfg_registry.register
+class g1_dev(RlPipelineCfg):
+    robot: str = "g1"
+    env: G1_23MujocoEnvCfg = G1_23MujocoEnvCfg()
+
+    ctrl: list[KeyboardCtrlCfg] = [
+        KeyboardCtrlCfg(),
+    ]
+
+    policy: G1UnitreePolicyCfg = G1UnitreePolicyCfg()
+
+
+@cfg_registry.register
+class g1_mjlab_loco(RlPipelineCfg):
+    robot: str = "g1"
+    env: G1MujocoEnvCfg = G1MujocoEnvCfg()
+
+    ctrl: list[KeyboardCtrlCfg] = [
+        KeyboardCtrlCfg(),
+    ]
+
+    policy: G1MjlabVelocityPolicyCfg = G1MjlabVelocityPolicyCfg()
+
+
+@cfg_registry.register
+class g1_mjlab_loco_right_overhand(RlLocoMimicPipelineCfg):
+    pipeline_type: str = "MjlabLocoActionPipeline"
+    robot: str = "g1"
+    env: G1MujocoEnvCfg = G1MujocoEnvCfg()
+    do_safety_check: bool = True
+
+    ctrl: list[KeyboardCtrlCfg] = [
+        KeyboardCtrlCfg(
+            triggers={
+                "Key.esc": "[SHUTDOWN]",
+                "`": "[SIM_REBORN]",
+                "1": "[POLICY_MIMIC,0]",
+                "2": "[POLICY_MIMIC,1]",
+                "3": "[POLICY_MIMIC,2]",
+                "4": "[POLICY_MIMIC,3]",
+                "5": "[POLICY_MIMIC,4]",
+                "6": "[POLICY_MIMIC,5]",
+                "7": "[POLICY_MIMIC,6]",
+                "9": "[POLICY_RECOVERY]",
+                "0": "[POLICY_LOCO]",
+            }
+        ),
+    ]
+
+    loco_policy: G1MjlabVelocityPolicyCfg = G1MjlabVelocityPolicyCfg()
+    recovery_policy: G1AmpRecoveryPolicyCfg = G1AmpRecoveryPolicyCfg()
+    recovery_upright_angle: float = 0.35
+    recovery_upright_height: float = 0.65
+    recovery_stable_steps: int = 25
+    stabilize_max_base_lin_vel: float = 0.3
+    stabilize_max_base_ang_vel: float = 0.5
+    action3_disturbance_guard_enabled: bool = True
+    action3_disturbance_guard_grace_steps: int = 10
+    action3_disturbance_guard_tilt_angle: float = 0.35
+    action3_disturbance_guard_ang_vel: float = 3.5
+    action3_disturbance_guard_trigger_steps: int = 3
+    mimic_policies: list[G1MjlabTrackingPolicyCfg] = [
+        G1MjlabTrackingPolicyCfg(policy_name="right_overhand"),
+        G1MjlabTrackingPolicyCfg(policy_name="back_kick"),
+        G1MjlabTrackingPolicyCfg(policy_name="rear_straight_punch"),
+        G1MjlabTrackingPolicyCfg(policy_name="left_jab"),
+        G1MjlabTrackingPolicyCfg(policy_name="right_cross"),
+        G1MjlabTrackingPolicyCfg(policy_name="left_front_kick"),
+        G1MjlabTrackingPolicyCfg(policy_name="spin_kick"),
+    ]
+
+
+@cfg_registry.register
+class g1_mjlab_loco_right_overhand_post_action_only(
+    g1_mjlab_loco_right_overhand
+):
+    action3_disturbance_guard_enabled: bool = False
